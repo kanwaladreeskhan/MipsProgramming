@@ -1,0 +1,66 @@
+.data   
+fav: .asciiz "Names of Favorite things:"  
+name: .asciiz "Book Name: Khud se Khuda Tak"      
+quote: .asciiz "Qoute: It always seen impossible before it's done." 
+couplet: .asciiz"Couplet: Victory without pain is just a victory\n         but victory with pain is history!"
+movie: .asciiz "Movie: Matrix"                            
+drama: .asciiz"Drama: Sinf e Ahan"
+color: .asciiz"Color: Grey"
+dish: .asciiz"Dish: Biriyani"
+newline:.asciiz "\n"
+.text  #inst to be executed
+.globl main   
+main:
+  li $v0 , 4    
+    la $a0 , fav    
+    syscall    
+    li $v0,4
+    la $a0,newline
+    syscall
+    li $v0 , 4    
+    la $a0 , name     
+    syscall    
+    li $v0,4
+    la $a0,newline
+    syscall
+    li $v0,4
+    la $a0, quote 
+    syscall
+      li $v0,4
+    la $a0,newline
+    syscall
+    li $v0,4
+    la $a0,couplet
+    syscall
+      li $v0,4
+    la $a0,newline
+    syscall
+    li $v0,4
+    la $a0, movie    
+    syscall 
+      li $v0,4
+    la $a0,newline
+    syscall
+    syscall
+    li $v0,4
+    la $a0, drama   
+    syscall 
+      li $v0,4
+    la $a0,newline
+    syscall
+     syscall
+    li $v0,4
+    la $a0, color   
+    syscall 
+      li $v0,4
+    la $a0,newline
+    syscall
+     syscall
+    li $v0,4
+    la $a0, dish   
+    syscall 
+      li $v0,4
+    la $a0,newline
+    syscall
+    li $v0, 10
+    syscall

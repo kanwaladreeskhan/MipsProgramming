@@ -1,0 +1,102 @@
+.data  
+question1: .asciiz "What is your name?" 
+name: .space 20
+question2: .asciiz "What is your enrollment?" 
+enroll: .space 20
+question3:.asciiz "What is your registeration number?" 
+regNo:.space 20
+question4:.asciiz "What is your program?" 
+program:.space 20
+question5:.asciiz "What is your currrent semester?" 
+semester:.word 0
+question6:.asciiz "What is your section?" 
+section:.byte 0
+
+newline:.asciiz "\n"
+.text   
+.globl main   
+main:
+ li $v0 , 4    
+    la $a0 , question1    
+    syscall      
+    li $v0,4
+    la $a0,newline
+    syscall
+ li $v0,8
+la $a0,name
+li $a1,20
+syscall
+li $v0 , 4    
+    la $a0 , question2    
+    syscall      
+    li $v0,4
+    la $a0,newline
+    syscall
+ li $v0,8
+la $a0,enroll
+li $a1,20
+syscall
+li $v0 , 4    
+    la $a0 , question3  
+    syscall      
+    li $v0,4
+    la $a0,newline
+    syscall
+ li $v0,8
+la $a0,regNo
+li $a1,20
+syscall
+li $v0 , 4    
+    la $a0 , question4    
+    syscall      
+    li $v0,4
+    la $a0,newline
+    syscall
+ li $v0,8
+la $a0,program
+li $a1,20
+syscall
+ li $v0,4
+ la $a0, question5
+    syscall
+      li $v0,4
+    la $a0,newline
+    syscall
+    li $v0,5
+    syscall
+    sw $v0, semester
+  li $v0,4
+ la $a0, question6
+    syscall
+      li $v0,4
+    la $a0,newline
+    syscall
+    li $v0,12
+   syscall
+    sb $v0, section
+  li $v0,4
+    la $a0,newline
+    syscall
+  li $v0 , 4    
+    la $a0 ,   name
+    syscall
+    li $v0 , 4    
+    la $a0 ,   enroll
+    syscall
+    li $v0 , 4    
+    la $a0 ,   regNo
+    syscall
+    li $v0 , 4    
+    la $a0 ,   program
+    syscall
+     li $v0 , 1   
+     lw $a0 ,semester 
+     syscall
+      li $v0,4
+    la $a0,newline
+    syscall
+    li $v0 , 11   
+    lb $a0 , section
+    syscall
+  li $v0, 10
+    syscall
