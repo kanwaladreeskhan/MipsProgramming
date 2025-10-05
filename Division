@@ -1,0 +1,31 @@
+.data
+quotient:.asciiz"Quotient: "
+remainder: .asciiz"Remainder: "
+ 
+newline:.asciiz"\n"
+.text
+.globl main
+main:
+li $t0,45000
+li $t1,3
+div $t0,$t1
+mfhi $t5
+mflo $t6
+li $v0,4
+la $a0,remainder
+syscall
+move $a0,$t5
+li $v0,1
+syscall
+li $v0,4
+la $a0,newline
+syscall 
+li $v0,4
+la $a0,quotient
+syscall
+move $a0,$t6
+li $v0,1
+syscall
+li $v0,10
+syscall
+

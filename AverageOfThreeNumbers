@@ -1,0 +1,40 @@
+.data
+three: .float 3.0
+num1Msg:.asciiz "Please enter number 1 : "
+num2Msg:.asciiz "Please enter number 2 : "
+num3Msg:.asciiz "Please enter number 3 : "
+resultMsg:.asciiz "The average is : "
+newline:.asciiz"\n"
+.text
+.globl main
+main:
+
+li $v0,4
+la $a0,num1Msg
+syscall
+li $v0,6 # float input
+syscall
+mov.s $f1,$f0  # f0 mn store hua hy float
+li $v0,4
+la $a0,num2Msg
+syscall
+li $v0,6 # float input
+syscall
+mov.s $f2,$f0
+li $v0,4
+la $a0,num3Msg
+ syscall
+ li $v0,6
+ syscall
+ mov.s $f3,$f0
+ add.s $f4,$f2,$f1
+add.s $f5,$f4,$f3
+mov.s $f12,$f5
+l.s $f7,three
+div.s $f6,$f5,$f7
+li $v0,4
+la $a0,resultMsg
+syscall
+mov.s $f12,$f6
+li $v0,2
+syscall
