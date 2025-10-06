@@ -1,0 +1,57 @@
+.data
+birthyear:.asciiz"Enter your Birth year : "
+Biy:.word 0
+newline:.asciiz"\n"
+lowsig:.asciiz"Low Significant : "
+hisig:.asciiz"High Significant : "
+year:.asciiz"Your age in Years : "
+age:.asciiz"Your age in seconds is : "
+.text
+.globl main
+main:
+li $v0,4
+la $a0,birthyear
+syscall
+li $v0,5
+la $a0,Biy
+syscall 
+move $t1,$v0
+li $t2,2025
+li $t6,31536000  # seconds in one year
+sub $t3,$t2,$t1
+li $v0,4
+la $a0,year
+syscall
+move $a0,$t3
+li $v0,1
+syscall
+li $v0,4
+la $a0,newline
+syscall
+mult $t3,$t6
+mflo $t7
+mfhi $t8
+move $a0,$t7
+li $v0,4
+la $a0,age
+syscall
+move $a0,$t7
+li $v0,1
+ syscall
+ li $v0,4
+la $a0,newline
+syscall
+li $v0,4
+la $a0,hisig
+syscall
+move $a0,$t8
+li $v0,1
+ syscall
+ li $v0,10
+ syscall
+
+
+
+
+
+
