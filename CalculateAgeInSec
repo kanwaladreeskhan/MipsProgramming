@@ -1,4 +1,5 @@
 .data
+statement:.asciiz"===== Age Calculator ====="
 birthyear:.asciiz"Enter your Birth year : "
 Biy:.word 0
 newline:.asciiz"\n"
@@ -9,6 +10,12 @@ age:.asciiz"Your age in seconds is : "
 .text
 .globl main
 main:
+li $v0,4
+la $a0,statement
+syscall
+ li $v0,4
+la $a0,newline
+syscall
 li $v0,4
 la $a0,birthyear
 syscall
