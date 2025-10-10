@@ -1,0 +1,67 @@
+.data
+timeMsg:.asciiz"Enter time taken for displacement(in sec) : "
+dis1:.asciiz"Enter the initial displacement(in m) : "
+dis2: .asciiz"Enter the final displacement(in m) : "
+initialVel:.asciiz"The initial velocity(m/s) is :"
+finalVel:.asciiz"The final velocity(m/s) is :"
+acc:.asciiz"The Acceleration(m/s*s) is :"
+newline:.asciiz"\n"
+.text
+.globl main
+main:
+li $v0,4
+la $a0,timeMsg
+syscall
+li $v0,7
+syscall
+mov.d $f2,$f0
+li $v0,4
+la $a0,newline
+syscall
+li $v0,4
+la $a0,dis1
+syscall
+li $v0,7
+syscall
+mov.d $f4,$f0
+li $v0,4
+la $a0,newline
+syscall
+li $v0,4
+la $a0,dis2
+syscall
+li $v0,7
+syscall
+mov.d $f6,$f0
+li $v0,4
+la $a0,newline
+syscall
+li $v0,4
+la $a0,initialVel
+syscall
+div.d $f8,$f4,$f2
+mov.d $f12,$f8
+li $v0 ,3
+syscall 
+li $v0,4
+la $a0,newline
+syscall
+li $v0,4
+la $a0,finalVel
+syscall
+div.d $f10,$f6,$f2
+mov.d $f12,$f10
+li $v0 ,3
+syscall
+li $v0,4
+la $a0,newline
+syscall
+li $v0,4
+la $a0,acc
+syscall
+sub.d $f14,$f6,$f4
+div.d $f16,$f14,$f2
+mov.d $f12,$f16
+li $v0 ,3
+syscall
+

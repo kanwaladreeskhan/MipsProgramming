@@ -1,0 +1,40 @@
+.data
+input:.asciiz"Enter radius of the circle:"
+ pie: .double 3.14
+twopie: .double 6.28
+result1:.asciiz "The area of the circle is:"
+result2:.asciiz"The perimeter of the circle is:"
+newline:.asciiz "\n"
+.text
+.globl main
+main:
+li $v0,4
+la $a0,input
+syscall
+li $v0,7
+syscall
+mov.d $f2,$f0
+li $v0,4
+la $a0,newline
+syscall
+li $v0,4
+la $a0,result1
+syscall
+mul.d $f4,$f2,$f2
+l.d $f6,pie
+mul.d $f8,$f4,$f6
+mov.d $f12,$f8
+li $v0,3
+syscall
+li $v0,4
+la $a0,newline
+syscall
+li $v0,4
+la $a0,result2
+syscall
+l.d $f6,twopie
+mul.d $f8,$f2,$f6
+mov.d $f12,$f8
+li $v0,3
+syscall
+

@@ -1,0 +1,44 @@
+.data
+heading:.asciiz"Truth Table of OR gate:"
+newline:.asciiz"\n"
+.text
+.globl main
+main:
+li $v0,4
+la $a0,heading
+syscall
+li $v0,4
+la $a0,newline
+syscall
+li $t0,0x00000000
+li $t1,0x00000001
+or $t3,$t0,$t0
+or $t4,$t0,$t1
+or $t5,$t1,$t0
+or $t6,$t1,$t1
+li $v0,1
+move $a0,$t3
+syscall 
+li $v0,4
+la $a0,newline
+syscall
+li $v0,1
+move $a0,$t4
+syscall 
+li $v0,4
+la $a0,newline
+syscall
+li $v0,1
+move $a0,$t5
+syscall 
+li $v0,4
+la $a0,newline
+syscall
+li $v0,1
+move $a0,$t6
+syscall 
+li $v0,4
+la $a0,newline
+syscall
+li $v0,10
+syscall
