@@ -1,6 +1,6 @@
 .data
-actualbit: .word 0x4F
-maskingbit: .word 0x7
+actualbit: .word 0x1010485
+maskingbit: .word 0xFF
 .text
 .globl main
 main:

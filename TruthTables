@@ -1,0 +1,245 @@
+.data
+heading1:.asciiz"Truth Table of AND gate:"
+heading2:.asciiz"Truth Table of OR gate:"
+heading3:.asciiz"Truth Table of XOR gate:"
+heading4:.asciiz"Truth Table of NOR gate:"
+heading5:.asciiz"Truth Table of XNOR gate:"
+heading6:.asciiz"Truth Table of NAND gate:"
+newline:.asciiz"\n"
+.text
+.globl main
+main:
+li $t0,0x00000000
+li $t1,0x00000001
+li $v0,4
+la $a0,heading1
+syscall
+li $v0,4
+la $a0,newline
+syscall
+and  $t3,$t0,$t0
+and $t4,$t0,$t1
+and $t5,$t1,$t0
+and $t6,$t1,$t1
+li $v0,1
+move $a0,$t3
+syscall 
+li $v0,4
+la $a0,newline
+syscall
+li $v0,1
+move $a0,$t4
+syscall 
+li $v0,4
+la $a0,newline
+syscall
+li $v0,1
+move $a0,$t5
+syscall 
+li $v0,4
+la $a0,newline
+syscall
+li $v0,1
+move $a0,$t6
+syscall 
+li $v0,4
+la $a0,newline
+syscall
+li $v0,4
+la $a0,heading2
+syscall
+li $v0,4
+la $a0,newline
+syscall
+or  $t3,$t0,$t0
+or $t4,$t0,$t1
+or $t5,$t1,$t0
+or $t6,$t1,$t1
+li $v0,1
+move $a0,$t3
+syscall 
+li $v0,4
+la $a0,newline
+syscall
+li $v0,1
+move $a0,$t4
+syscall 
+li $v0,4
+la $a0,newline
+syscall
+li $v0,1
+move $a0,$t5
+syscall 
+li $v0,4
+la $a0,newline
+syscall
+li $v0,1
+move $a0,$t6
+syscall 
+li $v0,4
+la $a0,newline
+syscall
+li $v0,4
+la $a0,heading3
+syscall
+li $v0,4
+la $a0,newline
+syscall
+xor $t3,$t0,$t0
+xor $t4,$t0,$t1
+xor $t5,$t1,$t0
+xor $t6,$t1,$t1
+li $v0,1
+move $a0,$t3
+syscall 
+li $v0,4
+la $a0,newline
+syscall
+li $v0,1
+move $a0,$t4
+syscall 
+li $v0,4
+la $a0,newline
+syscall
+li $v0,1
+move $a0,$t5
+syscall 
+li $v0,4
+la $a0,newline
+syscall
+li $v0,1
+move $a0,$t6
+syscall 
+li $v0,4
+la $a0,newline
+syscall
+li $v0,4
+la $a0,heading4
+syscall
+li $v0,4
+la $a0,newline
+syscall
+or  $t2,$t0,$t0
+or $t3,$t0,$t1
+or $t4,$t1,$t0
+or $t5,$t1,$t1
+not $t6,$t2
+not $t7,$t3
+not $t8,$t4
+not $t9,$t5
+andi $t6, $t6, 1 
+andi $t7, $t7, 1 
+andi $t8, $t8, 1 
+andi $t9, $t9, 1 
+li $v0,1
+move $a0,$t6
+syscall 
+li $v0,4
+la $a0,newline
+syscall
+li $v0,1
+move $a0,$t7
+syscall 
+li $v0,4
+la $a0,newline
+syscall
+li $v0,1
+move $a0,$t8
+syscall 
+li $v0,4
+la $a0,newline
+syscall
+li $v0,1
+move $a0,$t9
+syscall 
+li $v0,4
+la $a0,newline
+syscall
+li $v0,4
+li $v0,4
+la $a0,heading5
+syscall
+li $v0,4
+la $a0,newline
+syscall
+xor  $t2,$t0,$t0
+xor $t3,$t0,$t1
+xor $t4,$t1,$t0
+xor $t5,$t1,$t1
+not $t6,$t2
+not $t7,$t3
+not $t8,$t4
+not $t9,$t5
+andi $t6, $t6, 1 
+andi $t7, $t7, 1 
+andi $t8, $t8, 1 
+andi $t9, $t9, 1 
+li $v0,1
+move $a0,$t6
+syscall 
+li $v0,4
+la $a0,newline
+syscall
+li $v0,1
+move $a0,$t7
+syscall 
+li $v0,4
+la $a0,newline
+syscall
+li $v0,1
+move $a0,$t8
+syscall 
+li $v0,4
+la $a0,newline
+syscall
+li $v0,1
+move $a0,$t9
+syscall 
+li $v0,4
+la $a0,newline
+syscall
+la $a0,heading6
+syscall
+li $v0,4
+la $a0,newline
+syscall
+and  $t2,$t0,$t0
+and $t3,$t0,$t1
+and $t4,$t1,$t0
+and $t5,$t1,$t1
+not $t6,$t2
+not $t7,$t3
+not $t8,$t4
+not $t9,$t5
+andi $t6, $t6, 1 
+andi $t7, $t7, 1 
+andi $t8, $t8, 1 
+andi $t9, $t9, 1 
+li $v0,1
+move $a0,$t6
+syscall 
+li $v0,4
+la $a0,newline
+syscall
+li $v0,1
+move $a0,$t7
+syscall 
+li $v0,4
+la $a0,newline
+syscall
+li $v0,1
+move $a0,$t8
+syscall 
+li $v0,4
+la $a0,newline
+syscall
+li $v0,1
+move $a0,$t9
+syscall 
+li $v0,4
+la $a0,newline
+syscall
+
+
+
+ 

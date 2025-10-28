@@ -1,0 +1,20 @@
+.data
+summsg:.asciiz"The sum is:"
+.text
+.globl main
+main:
+li $t0,1 #counter
+li $t1,0 #sum
+while:
+ble $t0,10,sum
+j exit
+sum:
+add $t1,$t1,$t0 #sum update sum=sum+i
+addi $t0,$t0,1  #i=i+1
+j while
+exit:
+li $v0,1
+move $a0,$t1
+syscall
+li $v0,10
+syscall

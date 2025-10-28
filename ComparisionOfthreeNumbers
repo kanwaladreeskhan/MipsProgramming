@@ -1,0 +1,57 @@
+.data
+input1:.asciiz "Please enter first whole number:"
+input2:.asciiz "Please enter second whole number:"
+input3:.asciiz "Please enter third whole number:"
+large:.asciiz "The largest number is: "
+newline: .asciiz"\n"
+ .text
+.globl main
+main:
+li $v0,4
+la $a0,input1
+syscall
+li $v0,5
+syscall
+move $t1,$v0
+li $v0,4
+la $a0,newline
+syscall
+li $v0,4
+la $a0,input2
+syscall
+li $v0,5
+syscall
+move $t2,$v0
+li $v0,4
+la $a0,newline
+syscall
+li $v0,4
+la $a0,input3
+syscall
+li $v0,5
+syscall
+move $t3,$v0
+li $v0,4
+la $a0,newline
+syscall
+bgt $t1,$t2,firstcomparision #num1>num2 
+move $t4,$t2
+j secondcomparision
+firstcomparision:
+move $t4,$t1
+secondcomparision:
+bgt $t4,$t3,print
+move $t4 , $t3
+j print
+j exit
+print:
+li $v0,4
+la $a0,large
+syscall
+li $v0,1
+ move $a0,$t4
+syscall
+ exit:
+ li,$v0,10
+ syscall
+

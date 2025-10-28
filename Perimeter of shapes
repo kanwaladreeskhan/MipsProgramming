@@ -1,0 +1,166 @@
+.data
+inputMsg: .asciiz "Please enter number 1 for triangle, 2 for square, 3 for circle, 4 for recatangle,\n5 for pantagon, 6 for trapezium perimeter: "
+side1:     .asciiz "Enter 1st side length of triangle: "
+side2:     .asciiz "Enter 2nd side length of triangle: "
+side3:     .asciiz "Enter 3rd side length of triangle: "
+length:   .asciiz "Enter length of square: "
+radius:   .asciiz "Enter radius of circle: "
+lengthR:   .asciiz "Enter length of rectangle: "
+width:   .asciiz "Enter width of rectangle: "
+pside:.asciiz"Enter the length of side of pantagon: "
+tside1: .asciiz "Enter 1st side length of trapezium: "
+tside2: .asciiz "Enter 1st side length of trapezium: "
+tside3: .asciiz "Enter 1st side length of trapezium: "
+tside4: .asciiz "Enter 1st side length of trapezium: "
+invalid:  .asciiz "Your choice is invalid."
+pie:      .float 3.14       
+two:      .float 2.0  
+four:      .float 4    
+five:      .float 5.0  
+.text
+.globl main
+main:
+    li $v0, 4
+    la $a0, inputMsg
+    syscall
+    li $v0, 5
+    syscall
+    move $t1, $v0
+    beq $t1, 1, choice1
+    beq $t1, 2, choice2
+    beq $t1, 3, choice3
+    beq $t1, 4, choice4
+    beq $t1, 5, choice5
+    beq $t1, 6, choice6
+    j invalidchoice
+choice1:
+    li $v0, 4
+    la $a0, side1
+    syscall
+    li $v0, 6       
+    syscall
+    mov.s $f1, $f0  
+    li $v0, 4
+    la $a0, side2
+    syscall
+    li $v0, 6
+    syscall
+    mov.s $f2, $f0 
+      li $v0, 4
+    la $a0, side3
+    syscall
+    li $v0, 6
+    syscall
+    mov.s $f3, $f0 
+    add.s $f2,$f2,$f1
+    add.s $f5,$f2,$f3
+      li $v0, 2
+    mov.s $f12, $f5
+    syscall
+    li $v0, 10
+    syscall
+choice2:
+      li $v0, 4
+    la $a0, length
+    syscall
+    li $v0, 6
+    syscall
+    mov.s $f1, $f0  
+     l.s $f3, four
+    mul.s $f2, $f1, $f3
+    li $v0, 2
+    mov.s $f12, $f2
+    syscall
+    li $v0, 10
+    syscall
+choice3:
+       li $v0, 4
+    la $a0, radius
+    syscall
+    li $v0, 6
+    syscall
+    mov.s $f1, $f0   
+    l.s $f2, two
+     l.s $f3, pie
+    mul.s $f4, $f1, $f2
+    mul.s $f5, $f4, $f3
+    li $v0, 2
+    mov.s $f12, $f5
+    syscall
+    li $v0, 10
+    syscall
+choice4:
+      li $v0, 4
+    la $a0, lengthR
+    syscall
+    li $v0, 6
+    syscall
+    mov.s $f1, $f0 
+    li $v0, 4
+    la $a0, width
+    syscall
+    li $v0, 6
+    syscall
+    mov.s $f2, $f0   
+    add.s $f3, $f1, $f2
+     l.s $f5, two
+    mul.s $f4,$f3,$f5
+    li $v0, 2
+    mov.s $f12, $f4
+    syscall
+    li $v0, 10
+    syscall
+    choice5:
+      li $v0, 4
+    la $a0, pside
+    syscall
+    li $v0, 6
+    syscall
+    mov.s $f1, $f0  
+     l.s $f3, five
+    mul.s $f2, $f1, $f3
+    li $v0, 2
+    mov.s $f12, $f2
+    syscall
+    li $v0, 10
+    syscall
+    choice6:
+    li $v0, 4
+    la $a0, tside1
+    syscall
+    li $v0, 6       
+    syscall
+    mov.s $f1, $f0  
+    li $v0, 4
+    la $a0, tside2
+    syscall
+    li $v0, 6
+    syscall
+    mov.s $f2, $f0 
+      li $v0, 4
+    la $a0, tside3
+    syscall
+    li $v0, 6
+    syscall
+    mov.s $f3, $f0 
+     li $v0, 4
+    la $a0, tside4
+    syscall
+    li $v0, 6
+    syscall
+    mov.s $f4, $f0 
+    add.s $f2,$f2,$f1
+    add.s $f3,$f2,$f3
+    add.s $f5,$f3,$f4
+      li $v0, 2
+    mov.s $f12, $f5
+    syscall
+    li $v0, 10
+    syscall
+invalidchoice:
+    li $v0, 4
+    la $a0, invalid
+    syscall
+
+    li $v0, 10
+    syscall

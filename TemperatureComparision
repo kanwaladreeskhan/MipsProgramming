@@ -1,0 +1,82 @@
+.data
+Q1: .asciiz "Enter temp in celsius: \n"
+Q2: .asciiz "Enter temp in fahrenheit: \n"
+Q3: .asciiz "Enter temp in kelvin: \n"
+kelvinCons: .float 273.15
+thirtytwo : .float 32
+fiveByNine: .float 0.55
+printSt: .asciiz "Largest value is: "
+
+.text
+.globl main
+main:
+li $v0, 4
+la $a0, Q1
+syscall
+
+li $v0, 6
+syscall
+mov.s $f1, $f0
+
+li $v0, 4
+la $a0, Q2
+syscall
+
+li $v0, 6
+syscall
+mov.s $f2, $f0
+
+li $v0, 4
+la $a0, Q3
+syscall
+
+li $v0, 6
+syscall
+mov.s $f3, $f0
+
+ConvertFromKelvin:
+l.s $f4, kelvinCons
+
+sub.s $f5, $f3, $f4
+
+ConvertFromFarhan:
+l.s $f4, thirtytwo
+l.s $f6, fiveByNine
+
+sub.s $f7, $f2, $f4
+mul.s $f7, $f7, $f6
+
+comparision:
+#f1 = cel
+#f5 = k cel
+#f7 = F cel
+
+c.lt.s $f5, $f1
+bc1t f1_greater
+mov.s $f8, $f5
+c.lt.s $f8, $f7
+bc1t print
+mov.s $f8, $f7
+j print
+
+f1_greater:
+mov.s $f8, $f1
+c.lt.s $f8, $f7
+bc1t print
+mov.s $f8, $f7
+j print
+
+
+j print
+
+print:
+li $v0, 4
+la $a0, printSt
+syscall
+
+li $v0, 2
+mov.s $f12, $f8
+syscall
+
+li $v0, 10
+syscall

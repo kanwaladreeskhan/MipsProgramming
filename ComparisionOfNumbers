@@ -1,0 +1,44 @@
+.data
+input1:.asciiz "Please enter first whole number:"
+input2:.asciiz "Please enter second whole number:"
+small:.asciiz "The smaller number is:"
+large:.asciiz "The greater number is:"
+same:.asciiz"These numbers are same."
+.text
+.globl main
+main:
+li $v0,4
+la $a0,input1
+syscall
+li $v0,5
+syscall
+move $t1,$v0
+li $v0,4
+la $a0,input2
+syscall
+li $v0,5
+syscall
+move $t2,$v0
+syscall
+bgt $t1,$t2,smaller
+bgt $t2,$t1,larger
+j equal
+smaller: 
+   li $v0, 4
+   la $a0, small
+   syscall
+   j exit
+   
+larger: 
+   li $v0, 4
+   la $a0, large
+   syscall
+   j exit
+equal:
+    li $v0, 4
+   la $a0, same
+   syscall
+   j exit
+exit: 
+  li $v0, 10
+  syscall

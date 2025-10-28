@@ -1,0 +1,102 @@
+.data
+inputMsg: .asciiz "Please enter number 1 for triangle, 2 for square area, 3 for circle area, 4 for recatangle: "
+base:     .asciiz "Enter base of triangle: "
+height:   .asciiz "Enter height of triangle: "
+length:   .asciiz "Enter length of square: "
+radius:   .asciiz "Enter radius of circle: "
+lengthR:   .asciiz "Enter length of rectangle: "
+width:   .asciiz "Enter width of rectangle: "
+invalid:  .asciiz "Your choice is invalid."
+
+pie:      .float 3.14       
+two:      .float 2.0       
+
+.text
+.globl main
+main:
+    li $v0, 4
+    la $a0, inputMsg
+    syscall
+    li $v0, 5
+    syscall
+    move $t1, $v0
+    beq $t1, 1, choice1
+    beq $t1, 2, choice2
+    beq $t1, 3, choice3
+     beq $t1, 4, choice4
+    j invalidchoice
+choice1:
+       li $v0, 4
+    la $a0, base
+    syscall
+    li $v0, 6       
+    syscall
+    mov.s $f1, $f0  
+        li $v0, 4
+    la $a0, height
+    syscall
+    li $v0, 6
+    syscall
+    mov.s $f2, $f0  
+    l.s $f3, two
+    mul.s $f4, $f1, $f2
+    div.s $f5, $f4, $f3
+    li $v0, 2
+    mov.s $f12, $f5
+    syscall
+    li $v0, 10
+    syscall
+choice2:
+      li $v0, 4
+    la $a0, length
+    syscall
+    li $v0, 6
+    syscall
+    mov.s $f1, $f0  
+    mul.s $f2, $f1, $f1
+    li $v0, 2
+    mov.s $f12, $f2
+    syscall
+    li $v0, 10
+    syscall
+choice3:
+       li $v0, 4
+    la $a0, radius
+    syscall
+    li $v0, 6
+    syscall
+    mov.s $f1, $f0   
+    l.s $f2, pie
+    mul.s $f3, $f1, $f1
+    mul.s $f4, $f2, $f3
+    li $v0, 2
+    mov.s $f12, $f4
+    syscall
+    li $v0, 10
+    syscall
+choice4:
+      li $v0, 4
+    la $a0, lengthR
+    syscall
+    li $v0, 6
+    syscall
+    mov.s $f1, $f0 
+    li $v0, 4
+    la $a0, width
+    syscall
+    li $v0, 6
+    syscall
+    mov.s $f2, $f0   
+    mul.s $f3, $f1, $f2
+    li $v0, 2
+    mov.s $f12, $f3
+    syscall
+    li $v0, 10
+    syscall
+invalidchoice:
+    li $v0, 4
+    la $a0, invalid
+    syscall
+
+    li $v0, 10
+    syscall
